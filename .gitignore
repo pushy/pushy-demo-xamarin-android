@@ -1,0 +1,7 @@
+bin/
+obj/
+packages/
+Components/
+*.nupkg
+*.userprefs
+*.designer.cs
