@@ -30,7 +30,8 @@ namespace PushyDemo
 					.SetLights(Color.Red, 1000, 1000)
 					.SetVibrate(new long[] { 0, 400, 250, 400 })
 				    .SetColor(ContextCompat.GetColor(context, Resource.Color.colorPrimary))
-				   	.SetSound(RingtoneManager.GetDefaultUri(RingtoneType.Notification));
+				   	.SetSound(RingtoneManager.GetDefaultUri(RingtoneType.Notification))
+					.SetContentIntent(PendingIntent.GetActivity(context, 0, new Intent(context, typeof(MainActivity)), PendingIntentFlags.UpdateCurrent));
 
 			// Get an instance of the NotificationManager service
 			var notificationManager = (NotificationManager)context.GetSystemService(Context.NotificationService);
