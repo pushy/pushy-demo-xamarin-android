@@ -3,6 +3,7 @@ using Android.Content;
 using Android.Graphics;
 using Android.Media;
 using Android.Support.V4.Content;
+using ME.Pushy.Sdk;
 
 namespace PushyDemo
 {
@@ -23,7 +24,8 @@ namespace PushyDemo
 			}
 
 			// Prepare a notification with vibration, sound and lights
-			var notificationBuilder = new Notification.Builder(context)
+			var builder = new Notification.Builder(context)
+                    .SetAutoCancel(true)
                    	.SetSmallIcon(Resource.Mipmap.Notification)
 					.SetContentTitle(notificationTitle)
 					.SetContentText(notificationText)
@@ -33,11 +35,14 @@ namespace PushyDemo
 				   	.SetSound(RingtoneManager.GetDefaultUri(RingtoneType.Notification))
 					.SetContentIntent(PendingIntent.GetActivity(context, 0, new Intent(context, typeof(MainActivity)), PendingIntentFlags.UpdateCurrent));
 
-			// Get an instance of the NotificationManager service
-			var notificationManager = (NotificationManager)context.GetSystemService(Context.NotificationService);
+            // Automatically configure a Notification Channel for devices running Android O+
+            Pushy.SetNotificationChannel(builder, context);
+
+            // Get an instance of the NotificationManager service
+            var notificationManager = (NotificationManager)context.GetSystemService(Context.NotificationService);
 
 			// Build the notification and display it
-			notificationManager.Notify(1, notificationBuilder.Build());
+			notificationManager.Notify(1, builder.Build());
 
 		}
 	}
