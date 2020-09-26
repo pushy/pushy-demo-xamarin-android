@@ -2,7 +2,6 @@
 using Android.Content;
 using Android.Graphics;
 using Android.Media;
-using Android.Support.V4.Content;
 using ME.Pushy.Sdk;
 
 namespace PushyDemo
@@ -31,7 +30,7 @@ namespace PushyDemo
 					.SetContentText(notificationText)
 					.SetLights(Color.Red, 1000, 1000)
 					.SetVibrate(new long[] { 0, 400, 250, 400 })
-				    .SetColor(ContextCompat.GetColor(context, Resource.Color.colorPrimary))
+				    .SetColor(context.GetColor(Resource.Color.colorPrimary))
 				   	.SetSound(RingtoneManager.GetDefaultUri(RingtoneType.Notification))
 					.SetContentIntent(PendingIntent.GetActivity(context, 0, new Intent(context, typeof(MainActivity)), PendingIntentFlags.UpdateCurrent));
 
