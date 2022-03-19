@@ -1,35 +1,47 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="10090" android:versionName="1.0.9" package="me.pushy.example">
 	<!-- Pushy Permissions -->
-	<uses-permission android:name="android.permission.INTERNET" />
-	<uses-permission android:name="android.permission.WAKE_LOCK" />
-	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-	<!-- End Pushy Permissions -->
+                                        
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+
+    <!-- End Pushy Permissions -->
+    
 	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="28" />
 	<uses-permission android:name="android.permission.VIBRATE" />
+    
 	<application android:theme="@style/AppTheme" android:allowBackup="true" android:icon="@mipmap/icon" android:label="@string/appName">
 		<!-- Pushy Declarations -->
-		<!-- Pushy Update Receiver -->
-		<!-- Do not modify - internal BroadcastReceiver that restarts the listener service -->
-		<receiver android:name="me.pushy.sdk.receivers.PushyUpdateReceiver" android:exported="false">
-			<intent-filter>
-				<action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
-			</intent-filter>
-		</receiver>
-		<!-- Pushy Boot Receiver -->
-		<!-- Do not modify - internal BroadcastReceiver that restarts the listener service -->
-		<receiver android:name="me.pushy.sdk.receivers.PushyBootReceiver" android:exported="false">
-			<intent-filter>
-				<action android:name="android.intent.action.BOOT_COMPLETED" />
-			</intent-filter>
-		</receiver>
-		<!-- Pushy Socket Service -->
-		<!-- Do not modify - internal socket service -->
-		<service android:name="me.pushy.sdk.services.PushySocketService" />
-		<!-- Pushy Job Service (added in Pushy SDK 1.0.35) -->
-		<!-- Do not modify - internal service -->
-		<service android:name="me.pushy.sdk.services.PushyJobService" android:permission="android.permission.BIND_JOB_SERVICE" />
-		<!-- End Pushy Declarations -->
+
+        <!-- Pushy Update Receiver -->
+        <!-- Do not modify - internal BroadcastReceiver that restarts the listener service -->
+        <receiver android:name="me.pushy.sdk.receivers.PushyUpdateReceiver" android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Pushy Boot Receiver -->
+        <!-- Do not modify - internal BroadcastReceiver that restarts the listener service -->
+        <receiver android:name="me.pushy.sdk.receivers.PushyBootReceiver" android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
+
+        <!-- Pushy Socket Service -->
+        <!-- Do not modify - internal service -->
+        <service android:name="me.pushy.sdk.services.PushySocketService" android:stopWithTask="false" />
+
+        <!-- Pushy Job Service (added in Pushy SDK 1.0.35) -->
+        <!-- Do not modify - internal service -->
+        <service android:name="me.pushy.sdk.services.PushyJobService"
+            android:permission="android.permission.BIND_JOB_SERVICE"
+            android:stopWithTask="false" />
+
+        <!-- End Pushy Declarations -->
 	</application>
 </manifest>
